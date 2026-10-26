@@ -1,0 +1,126 @@
+Version 0.6.6 — Continuous, one-shot desktop chaos
+- Desktop icons and previously captured ordinary application windows are re-randomized in a loop while the Jasper Browser profile remains open; every icon cycle ensures it does not intentionally pick the current identical arrangement.
+- The desktop-chaos event runs once per Recovery cycle; a consumed marker prevents page reloads or duplicate helper triggers from starting another loop.
+- The loop stops when Jasper Browser closes, Escape is pressed, or Recovery requests a stop. The final randomized layout remains until Recovery restores the saved positions.
+- Recovery clears the one-shot marker and stop/active flags. The USB runtime passes its own user-local data directory explicitly to the shared desktop-layout worker.
+- Pinned taskbar icon order remains unchanged because Windows does not expose a supported, stable runtime API for randomizing it; visible running-app buttons flash instead.
+- Static package checks only; confirm real desktop behavior in Windows and check desktop-layout.log if Explorer declines icon moves.
+
+v0.6.4 DESKTOP ICON CAPTURE FIX
+--------------------------------
+- Fixed the native OpenProcess P/Invoke declaration to load from kernel32.dll. v0.6.3 mistakenly declared it in user32.dll, so desktop-icon capture threw EntryPointNotFoundException and captured zero icons.
+- Bumped the desktop-layout snapshot version and aligned the installer, helper health endpoint, launcher, and repair script on JASPER_OK|0.6.4.
+- Desktop icon positions are shuffled only after successful capture; Recovery retains the snapshot if positions cannot be restored.
+- Pinned taskbar icon reordering remains unsupported; this release does not claim that it physically reorders pinned items.
+
+v0.6.3 DESKTOP-ICON POSITION HOTFIX
+-----------------------------------
+- Replaced the 16-bit LVM_SETITEMPOSITION message with LVM_SETITEMPOSITION32 and a temporary POINT allocated in Explorer's address space.
+- Temporarily clears the desktop list-view LVS_AUTOARRANGE style during icon shuffling, then restores the saved style during Recovery.
+- Forces a non-zero rotation of captured icon slots, avoiding a random shuffle that can accidentally leave every icon in its original position.
+- Verifies post-move positions and logs icon counts, requests, observed movement, desktop list-view style, and recovery results to %LOCALAPPDATA%\JasperBrowserLite\desktop-layout.log.
+- Fixes a stale-snapshot guard that previously exited whenever a v0.6.0 snapshot existed. Old snapshots are restored before creating a fresh snapshot, rather than silently preventing the effect from running.
+- Pinned taskbar icon positions remain unchanged; the supported taskbar-side cue is randomized flashing of open-app taskbar buttons. Windows' supported taskbar layout configuration is not an immediate, reversible runtime reorder API.
+- Static package checks only; run the repair tool and confirm the desktop log on the target Windows machine.
+
+JASPER BROWSER LITE CHANGELOG
+=============================
+
+v0.6.2 HELPER HEALTH-CHECK HOTFIX
+----------------------------------
+- Fixed the fatal health-check version mismatch: the launcher and repair utility previously expected JASPER_OK|0.6.0 while the v0.6.1 helper returned JASPER_OK|0.6.1. The helper, launcher, repair tool, and installer now consistently use JASPER_OK|0.6.2.
+- The repair utility refreshes the installed helper and launcher, preserves horror state, restarts only Jasper-owned helper processes, and recreates the Jasper shortcuts.
+- The helper logs listener startup failures to %LOCALAPPDATA%\JasperBrowserLite\host-startup-errors.log so a port conflict is diagnosable rather than silently exiting.
+- Static source/package checks only; Windows runtime testing is still required.
+
+v0.6.1 ADULT-SITE BLOCK + WARNING SHAKE
+--------------------------------------
+- Added an editable known-adult-domain blocklist and Firefox WebsiteFilter policy. The policy is installation-wide for all profiles using the same Firefox installation; uninstall restores the pre-Jasper policies.json backup.
+- Direct adult-site URLs entered in Jasper Search and matching homepage links are intercepted before navigation, replaced with “STOP WHAT ARE YOU DOING”, and launch a bounded native desktop/cursor shake.
+- The warning shake lasts up to 5.2 seconds; Escape, the Return button, or Recovery stops it. Open windows are restored to their captured positions when the effect ends. Cursor shaking stops if the user deliberately moves the mouse.
+- Typing verity.com into Jasper Search opens the user-provided YouTube link; no video is embedded or bundled.
+- Adult-domain matching is a curated blocklist, not a complete category classifier.
+- Static checks only; PowerShell/Firefox policy and desktop shaking require Windows testing.
+
+- Added realistic 1920×1080 fire imagery with moving ember particles to the final scene.
+- Added an original synthesized scream that rises gradually in volume, followed by a looping digital buffer/glitch tone that stops abruptly when the Jasper window closes or Recovery is used. This imitates a crash; it does not crash Windows.
+- Added reversible desktop chaos: desktop icon positions are shuffled among their saved grid positions; visible ordinary application windows on the primary monitor are moved to randomized positions; running-window taskbar buttons flash in randomized order.
+- Recovery now attempts to restore saved desktop icon and running-window positions alongside the original wallpaper. Windows does not offer a stable supported API to reorder pinned taskbar icons, so their persistent pinned order is intentionally left unchanged.
+- Added an early Linux alpha port package with a user-local launcher and recovery script; system-specific Linux desktop effects are not yet at Windows parity.
+- Static validation only in this environment; execute the PowerShell installer and desktop effects on Windows to verify behavior.
+
+Jasper Browser Lite v0.5.10
+- Replaced the ten-reload finale gate with explicit button progression; refreshing the page no longer advances the horror.
+- After the cursed-text stage, clicking the hidden ??? control (or submitting a search) opens the glyph-only offline screen and immediately requests the real reversible wallpaper/audio effect.
+- The offline screen's ??? button advances directly to the fire/farewell finale; it no longer reloads the homepage.
+- The second deep-scroll sequence waits until the bounded Windows dialog burst has finished before re-enabling the hidden control.
+- Host retains /api/page-load only for compatibility with older cached pages; the endpoint no longer increments a counter or triggers the ending.
+- Static checks only; Windows effects still require testing on the target PC.
+
+Jasper Browser Lite v0.5.9
+- Fixed reload progression: after the user activates the horror search state, each reload of the local Jasper Search page increments a persistent counter; reload 10 triggers the final sequence and real, reversible black wallpaper/audio effect exactly once.
+- Fixed repeated final-scene triggering: reload count caps at 10 and does not start duplicate worker processes on later reloads.
+- At the ??? stage, visible page copy becomes emoji/cursed glyphs, including the simulated offline screen; the hidden control remains exactly labeled ???.
+- Added a cursed-text observer for dynamically inserted site text, and kept an icon-only reload control available.
+- Added wallpaper-applied state and worker diagnostics; if a previous build reached reload 10 but failed to apply the wallpaper, v0.5.9 retries on the next Jasper Search reload.
+- Replaced the 1×1 black BMP with a proper 1920×1080 solid-black BMP.
+- Static checks only; the Windows runtime effects still require testing on the target PC.
+
+Jasper Browser Lite v0.5.8
+- Replaced the serial centered ??? message-box loop with exactly 36 separate, real Windows dialog windows displayed across a 6×6 screen layout in a quick burst.
+- Each dialog has an OK button and a normal close button; pressing Escape or launching Jasper Browser Recovery closes the entire group. The sequence is bounded and does not keep spawning windows.
+- Updated the host health/version check to 0.5.8. Static package checks only; Windows runtime testing is still required.
+
+Jasper Browser Lite v0.5.7
+- Removed the visible per-launch terminal. Browser shortcuts use wscript.exe and a VBS shim that starts PowerShell with WindowStyle Hidden.
+- Added a versioned localhost health endpoint and automatic stale Jasper-helper restart.
+- Host self-heals a missing or blank horror token, and launcher checks both health and API before opening Jasper.
+- Added Repair-JasperBrowser-Fix.bat for existing installations; it replaces the helper/page and refreshes Jasper shortcuts without reinstalling Firefox.
+- Recreates only Jasper-owned shortcuts and kills only host processes whose command line points to this user's JasperBrowserLite folder.
+
+Jasper Browser Lite v0.5.6
+- Fixed the deep-scroll trigger visibility: the textless button now has a 36px hit target, a subtle red pulse, and hover/focus feedback while remaining unlabeled.
+- Added a real Windows console flash at every Jasper Browser launch. The terminal displays a short startup message and closes itself after two seconds.
+- The launcher waits briefly for the terminal to close, then continues normal launch or shows the existing Jasper-only recovery lockout.
+- The browser launcher and recovery remain separate; this still uses the installed Firefox/Gecko runtime.
+
+Jasper Browser Lite v0.5.5
+- Fixed the hidden horror trigger placement: a long blank scroll runway now places the textless button deep below the normal start-page content.
+- Increased the tiny trigger's subtle visibility and hover hit-target while keeping it textless before the first click.
+- Kept visible Windows branding as Jasper Browser in the title bar, app icon, and Jasper Browser shortcuts. The underlying signed Firefox runtime remains named firefox.exe to preserve updates and normal runtime behavior.
+
+v0.5.4
+- Added a brief red-console glitch after pressing Enter at the successful install prompt, with the requested text appearing for under a second.
+- The glitch is visual-only and does not modify Windows settings or files.
+- Added a second-deep-scroll horror trigger, a short interruptible real desktop cursor/window shake during the fire finale, and launcher lockout after the ending until recovery.
+- Recovery remains a separate launcher and restores the saved wallpaper and horror state.
+- These Windows effects have static checks only; end-to-end testing still needs a Windows machine.
+
+v0.5.3
+- Added an eight-stage compiler-inspired install progress display with progress percentage/bar and clear success/failure handling.
+- Clarifies that the installer configures the installed Gecko runtime rather than compiling the browser engine.
+
+
+v0.5.2
+- Configure a uBlock Origin trusted-site exception for South Park domains to help video playback while keeping ad blocking on other websites.
+- Force Jasper profile to Firefox Standard tracking-protection category.
+- Set a dedicated Windows AppUserModelID on Jasper Browser shortcuts/windows and continue applying the fox icon.
+- Does not patch firefox.exe; Gecko/Firefox remains the engine underneath.
+
+v0.5.1
+- Fixed installer paths for generated branding and launcher scripts.
+
+
+Version 0.6.5 — USB flash and portable user mode
+- Added a USB flasher with removable-drive validation, disk model/size display, exact typed FORMAT X: confirmation, and exFAT formatting.
+- Added a manually launched USB runtime that uses a separate per-user app-data folder, profile, loopback port, helper, and recovery flow.
+- The USB launcher asks before running winget if Firefox is missing. It uses normal Windows installation/UAC behavior and does not bypass elevation or auto-run on insertion.
+- Added clear warnings that formatting destroys the selected USB drive's files.
+- Standard installer, helper, repair tool, and version metadata updated to 0.6.5.
+- Limitation: portable user mode opens Jasper Search as its initial page but does not write installation-wide Firefox policies or force-install extensions.
+
+
+v0.6.6 USB setup convenience update
+- Removed the extra setup confirmation and INSTALL-style prompts after the user launches the USB launcher.
+- If Firefox is absent, the launcher starts winget automatically and continues after Firefox is detected.
+- Windows USB insertion auto-run remains blocked by design; normal Windows security/UAC prompts may still appear.

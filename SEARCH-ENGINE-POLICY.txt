@@ -1,0 +1,5 @@
+Jasper Browser v0.5.0 applies this configuration to the existing Firefox installation's distribution\policies.json:
+- SearchEngines: Jasper Search as the default provider; requests use Google.
+- ExtensionSettings: force-install Mozilla's signed New Tab Override add-on and uBlock Origin.
+- 3rdparty.Extensions: New Tab Override displays http://127.0.0.1:18765/StartPage.html.
+The localhost static server serves StartPage.html and relative assets. Do not replace the URL with file:/// because current Firefox extensions block direct local-file page access.

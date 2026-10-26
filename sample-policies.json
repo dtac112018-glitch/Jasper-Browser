@@ -1,0 +1,40 @@
+{
+  "policies": {
+    "ExtensionSettings": {
+      "*": {
+        "installation_mode": "allowed"
+      },
+      "newtaboverride@agenedia.com": {
+        "installation_mode": "force_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/new-tab-override/latest.xpi"
+      },
+      "uBlock0@raymondhill.net": {
+        "installation_mode": "force_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
+      }
+    },
+    "3rdparty": {
+      "Extensions": {
+        "newtaboverride@agenedia.com": {
+          "type": "custom_url",
+          "url": "http://127.0.0.1:18765/StartPage.html",
+          "focus_website": true
+        }
+      }
+    },
+    "SearchEngines": {
+      "Add": [
+        {
+          "Name": "Jasper Search",
+          "URLTemplate": "https://www.google.com/search?q={searchTerms}",
+          "Method": "GET",
+          "Alias": "jasper",
+          "Description": "Jasper Search — results powered by Google",
+          "SuggestURLTemplate": "https://suggestqueries.google.com/complete/search?client=firefox&q={searchTerms}"
+        }
+      ],
+      "Default": "Jasper Search",
+      "PreventInstalls": false
+    }
+  }
+}

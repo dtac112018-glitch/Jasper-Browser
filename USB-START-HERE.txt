@@ -1,0 +1,15 @@
+JASPER BROWSER LITE USB v0.6.6
+
+TO FLASH A USB:
+1. Extract the package onto your PC, not onto the target USB.
+2. Double-click Flash-JasperBrowser-USB.bat.
+3. Choose a listed removable/USB drive and read its model, size, and label carefully.
+4. Type the exact FORMAT X: confirmation only if the selected drive is correct. This erases everything on that drive.
+5. Wait for the copy to complete.
+
+TO RUN ON ANOTHER PC:
+1. Plug in the USB.
+2. Double-click Start-JasperBrowser-USB.bat once. Setup then proceeds without an INSTALL text prompt or a second confirmation dialog.
+3. If Firefox is missing, the launcher automatically starts winget to install Mozilla Firefox, then continues when Firefox is detected. Windows may still show normal security/UAC prompts.
+
+Windows blocks silent execution solely on USB insertion; this package does NOT bypass that protection or UAC. The portable launcher copies its user-mode runtime into %LOCALAPPDATA%\JasperBrowserLiteUSB so the helper can run and Recovery remains available even if the USB is later unplugged.

@@ -1,0 +1,11 @@
+﻿SOUTH PARK VIDEO PLAYBACK HELP
+===============================
+
+This release adds a uBlock Origin exception on southparkstudios.com and southpark.cc.com only, while keeping the ad blocker enabled elsewhere. It also sets Jasper's profile to Standard tracking protection.
+
+1. Close every Firefox/Jasper window and reopen Jasper Browser from its shortcut.
+2. Open the South Park episode again and reload it with Ctrl+F5.
+3. If the player is still blank, click the shield/padlock protections control and temporarily turn off Enhanced Tracking Protection for that site, then reload. This is a diagnostic test, not a general setting change.
+4. If the site says 'video unavailable' or shows a regional restriction, the browser cannot override the rights/territory restriction.
+
+uBlock is trusted only for South Park domains; filtering remains enabled on the rest of the web.

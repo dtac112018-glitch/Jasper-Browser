@@ -1,0 +1,95 @@
+/* Jasper Browser chrome theme — only loaded in Jasper's private browser profile. */
+:root {
+  --toolbar-bgcolor: #0b1222 !important;
+  --toolbar-color: #eaf3ff !important;
+  --toolbar-field-background-color: #14213a !important;
+  --toolbar-field-color: #f6f9ff !important;
+  --toolbar-field-border-color: #304b75 !important;
+  --toolbar-field-focus-background-color: #162744 !important;
+  --toolbar-field-focus-border-color: #67ccff !important;
+  --tab-selected-bgcolor: #1b2f50 !important;
+  --chrome-content-separator-color: #223b5e !important;
+}
+#navigator-toolbox,
+#TabsToolbar,
+#nav-bar,
+#PersonalToolbar {
+  background: #0b1222 !important;
+  color: #eaf3ff !important;
+}
+#TabsToolbar { background: linear-gradient(105deg, #0a1020 0%, #111e38 50%, #151d3d 100%) !important; }
+#nav-bar {
+  border-top: 1px solid rgba(119, 170, 255, .08) !important;
+  box-shadow: 0 5px 18px rgba(0,0,0,.12) !important;
+}
+.tabbrowser-tab .tab-background { border-radius: 10px 10px 0 0 !important; margin-block: 4px 0 !important; }
+.tabbrowser-tab[selected] .tab-background {
+  background: linear-gradient(130deg, rgba(48, 91, 151, .74), rgba(48, 66, 121, .70)) !important;
+  border: 1px solid rgba(111, 190, 255, .24) !important;
+}
+#urlbar-background, #searchbar {
+  border-radius: 13px !important;
+  background: linear-gradient(120deg, #142440, #121d34) !important;
+  border: 1px solid #2b4266 !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025) !important;
+}
+#urlbar[focused="true"] #urlbar-background { border-color: #68ccff !important; box-shadow: 0 0 0 2px rgba(104,204,255,.12) !important; }
+#firefox-view-button,
+#sidebar-button,
+#alltabs-button,
+#save-to-pocket-button,
+#PersonalToolbar { display: none !important; }
+/* Visible Jasper identity in the browser toolbar. The official About dialog still uses Mozilla's source branding. */
+#nav-bar-customization-target::before {
+  content: "Jasper Browser";
+  display: flex !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+  min-width: 112px;
+  height: 34px;
+  margin: 0 10px 0 4px;
+  padding-left: 31px;
+  padding-right: 3px;
+  box-sizing: border-box;
+  background-image: url("jasper-32.png");
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 26px 26px;
+  color: #e5f5ff !important;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: -.15px;
+}
+@media (max-width: 950px) {
+  #nav-bar-customization-target::before { content: "Jasper"; min-width: 76px; padding-left: 29px; }
+}
+@media (max-width: 700px) {
+  #nav-bar-customization-target::before { display: none !important; }
+}
+
+
+/* High-contrast, light tab/title text for Jasper's in-place profile. */
+#TabsToolbar,
+#TabsToolbar *,
+#titlebar,
+#titlebar *,
+.tabbrowser-tab .tab-label,
+.tabbrowser-tab .tab-text,
+.tabbrowser-tab .tab-label-container {
+  color: #f4f7ff !important;
+  text-shadow: 0 1px 1px rgba(0,0,0,.4) !important;
+  opacity: 1 !important;
+}
+.tabbrowser-tab[selected="true"] .tab-label,
+.tabbrowser-tab[selected="true"] .tab-text {
+  color: #ffffff !important;
+  font-weight: 750 !important;
+}
+.tabbrowser-tab:not([selected="true"]) .tab-label,
+.tabbrowser-tab:not([selected="true"]) .tab-text {
+  color: #dce8ff !important;
+}
+#TabsToolbar .titlebar-buttonbox-container,
+#TabsToolbar .titlebar-spacer {
+  color: #f4f7ff !important;
+}

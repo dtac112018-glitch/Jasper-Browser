@@ -1,0 +1,30 @@
+# Curated adult-site host blocklist. One registrable domain per line.
+# Edit this file before running the installer to customize the list.
+pornhub.com
+xvideos.com
+xnxx.com
+xhamster.com
+redtube.com
+youporn.com
+tube8.com
+spankbang.com
+motherless.com
+brazzers.com
+bangbros.com
+realitykings.com
+naughtyamerica.com
+msporn.com
+adulttime.com
+xfreehd.com
+porntrex.com
+empflix.com
+tnaflix.com
+youjizz.com
+porndig.com
+cam4.com
+stripchat.com
+chaturbate.com
+bongacams.com
+livejasmin.com
+camsoda.com
+myfreecams.com
